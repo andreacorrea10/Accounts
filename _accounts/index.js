@@ -1,9 +1,9 @@
-//modulos externos
+
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 
 
-//modulos internos
+
 const fs = require('fs')
 operation()
 
@@ -36,7 +36,7 @@ function operation() {
         .catch((err) => console.log(err))
 }
 
-// CREATE AN ACCOUNT - CRIAR CONTA
+
 
 function createAccount() {
     console.log(chalk.bgGreen.black('Parabéns por escolher o nosso Banco!'))
@@ -77,7 +77,6 @@ function buildAccount () {
 
 }
 
-// ADD AN AMOUNT TO USER ACCOUNT - ADICIONAR FUNDOS A CONTA DO USUARIO
 
 function deposit() {
 
@@ -89,7 +88,7 @@ function deposit() {
 
         const accountName = answer['accountName']
         
-// VERIFY IF ACCOUNT EXISTS - VERIFICAR A EXISTENCIA DA CONTA DO USÚARIO
+
         if(!checkAccount(accountName)) {
             return deposit()
         } 
@@ -103,7 +102,7 @@ function deposit() {
 
             const amount = answer ['amount']
 
-// ADD AN AMOUNT - ADICIONAR A QUANTIDADE
+
             addAmount(accountName, amount)
             operation()
 
@@ -113,7 +112,7 @@ function deposit() {
     .catch(err => console.log(err))
 }
 
-// FUNCTION TO VERIFY THE EXISTS USER ACCOUNT - FUNÇÃO PARA VERIFICAR A EXISTENCIA DA CONTA DO USÚARIO
+
 
 function checkAccount(accountName) {
     if(!fs.existsSync(`accounts/${accountName}.json`)) {
@@ -124,7 +123,6 @@ function checkAccount(accountName) {
     return true
 }
 
-// FUNCTION ADD THE DESIRED QUANTITY TO THE USER ACCOUNT - FUNÇÃO PARA ADICIONAR A QUANTIDADE DESEJADA NA CONTA DO USÚARIO
 
 function addAmount(accountName, amount) {
  const accountData = getAccount (accountName)
@@ -146,7 +144,6 @@ function addAmount(accountName, amount) {
      
 }
 
-// FUNCTION TO FIND THE USER ACCOUNT - FUNÇÃO PARA LOCALIZAR A CONTA DO USÚARIO
 
 function getAccount(accountName) {
     const accountJSON = fs.readFileSync(`accounts/${accountName}.json`, {
@@ -156,7 +153,7 @@ function getAccount(accountName) {
 
     return JSON.parse(accountJSON)
 }
-// SHOW ACCOUNT BALANCE - MOSTAR SALDO DA CONTA
+
     function getAccountBalance() {
         inquirer.prompt([
             { 
@@ -167,7 +164,7 @@ function getAccount(accountName) {
         
         const accountName = answer['accountName']
 
-// VERIFY EXISTS ACCOUNT - VERIFICAR SE A CONTA EXISTE
+
         if(!checkAccount(accountName)) {
             return getAccountBalance()
         }
@@ -181,7 +178,7 @@ function getAccount(accountName) {
         }).catch(err => console.log(err))
     }
 
-// WITHDRAW THE AMOUNT FROM THE USER'S ACCOUNT - SACAR A QUANTIA DA CONTA DO USUARIO
+
     function withdraw() {
         inquirer.prompt([
             {
